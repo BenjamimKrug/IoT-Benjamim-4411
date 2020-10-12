@@ -2,6 +2,8 @@
 #include "Ticker.h"
 #include "wifi_VGA_config.h"
 #include "string.h"
+#include <MPU6050_tockn.h>//biblioteca para o interfaceamento com o MPU6050
+#include <Wire.h>//biblioteca para o controle do periferico I2C
 
 //Para teclado PS/2
 #include "fabgl.h"
@@ -20,13 +22,16 @@ fabgl::PS2Controller PS2Controller;
 #define J 3
 #define NJ 4
 #define VJ 5
+#define S 6
+#define TS 7
+#define VS 8
 
-//Ticker para a leitura da temperatura, humidade e gás
+//Ticker para a leitura da temperatura, umidade e gás
 Ticker tempTicker;
 //Para leitura dos dados do DHT11
 DHTesp dht;
 TempAndHumidity newValues;
-
+MPU6050 mpu6050(Wire);//configura o giroscopio/acelerômetro
 
 const char* mqtt_server = "broker.hivemq.com";//broker MQTT
 
@@ -40,16 +45,19 @@ int dhtPin = 17;
 int gasPin = 36;
 
 //variaveis
-int gasValue=0;
-uint8_t lamps[6]={3,0,0,3,0,0};
+bool intruder=false, lock=false;
+int gasValue=0, gasMed[4]={0,0,0,0};
+char lamps[6]={'0','0','0','0','0','0'}, janelas[2]={'0','0'};
 char lines[MAXLINES][100];
 char palavras[8][30];
 uint8_t lastpos=0, palpos=0;
-int anaRes[8]={0,0,0,0,0,0,0,0};
+int anaRes[]={0,0,0,0,0,0,0,5,0};
 char texto[24];
-char umistring[8];
-char tempstring[8];
-uint8_t i=0, l=1;
+char umistring[8], tempstring[8], msgstring[9]={32,32,32,32,32,32,32,32,'\0'};
+char senha[]="123456";
+float accel=0;
+uint8_t i=0, l=1, j=0, h=0, k=0; 
+long m=0, lastm=0;
 
 void tempTask(void *pvParameters);
 bool getTemperature();
@@ -79,16 +87,13 @@ bool getTemperature() {
   Serial.println(" T:" + String(newValues.temperature) + " H:" + String(newValues.humidity) + " G:"+String(gasValue));
   
   dtostrf(newValues.humidity, 1, 2, umistring);
-  client.publish("Benjamim/hum", umistring);  
-  delay(2);
+  client.publish("Benjamim/umi", umistring);  
   
   dtostrf(newValues.temperature, 1, 2, tempstring);
   client.publish("Benjamim/temp", tempstring);  
-  delay(2);
   draw_dados();
   return true;
 }
-
 void tempTask(void *pvParameters) {
   Serial.println("tempTask loop started");
   while (1) // loop da função de temperatura
@@ -101,7 +106,6 @@ void tempTask(void *pvParameters) {
     vTaskSuspend(NULL);
   }
 }
-
 bool initTemp() {
   byte resultValue = 0;
   dht.setup(dhtPin, DHTesp::DHT11);
@@ -118,8 +122,15 @@ bool initTemp() {
   }
   return true;
 }
-void setup()
-{
+void setup(){
+  vga.init(vga.MODE320x240, redPin, greenPin, bluePin, hsyncPin, vsyncPin);
+  //selecting the font
+  vga.setFont(Font6x8);  
+  vga.clear(6);
+  strcpy(lines[0], "bem vindo");
+  draw_msg();
+  draw_lamp();
+  draw_dados();
   Serial.begin(115200);
   initTemp();
   // Signal end of setup() to tasks
@@ -129,32 +140,55 @@ void setup()
 
   WiFi.mode(WIFI_STA);
   WiFiManager wm;
+  
   bool res;
   res = wm.autoConnect("ESP32_wifi_config"); 
-  if(!res) {
-      Serial.println("Nao foi possivel conectar, tente novamente");
-  } 
-  else {  
-      Serial.println("Wifi conectado");      
-  }
+  if(!res) Serial.println("Nao foi possivel conectar, tente novamente");
+  else  Serial.println("Wifi conectado");    
   
   client.setServer(mqtt_server, 1883);//configura a conexão com o broker MQTT
   client.setCallback(callback);//configura a interrupção para a recepção de dados via MQTT
 
   PS2Controller.begin(PS2Preset::KeyboardPort0);
+  Wire.begin(26,25); // inicia SDA SCL do I2C para o ESP32
+  mpu6050.begin();//inicia o interfaceamento com o MPU6050
+  mpu6050.calcGyroOffsets(true);//calcula o offset inicial do giroscópio do MPU6050
+
+    
   
-  vga.init(vga.MODE320x240, redPin, greenPin, bluePin, hsyncPin, vsyncPin);
-  //selecting the font
-  vga.setFont(Font6x8);  
-  vga.clear(6);
-  strcpy(lines[0], "bem vindo");
-  draw_msg();
-  draw_lamp();
-  draw_dados();
+  
 }
 
-
-void callback(char* topic, byte* payload, unsigned int length) {//interrupção d recepção de dado pelo MQTT
+void callback(char* topic, byte* payload, unsigned int length) {//interrupção da recepção de dado pelo MQTT
+  for(int p=0; p<13;p++){
+    Serial.write(topic[p]);
+  }
+  Serial.print("recebido payload:");
+  for(int p=0; p<sizeof(payload);p++){
+    Serial.write(payload[p]);
+  }
+  Serial.println();
+  if(topic[9]=='p'&&topic[10]=='E'){
+    if(topic[11]=='s'&&topic[12]=='p'){
+      if(payload[1]=='l'){
+        if(payload[2]>='1'&&payload[2]<='6'){
+          if(payload[3]=='1')lamps[payload[2]-49]='3';
+          if(payload[3]=='0')lamps[payload[2]-49]='0';
+        }
+        draw_lamp();    
+      }
+      if(payload[1]=='j'){
+        if(payload[2]>='1'&&payload[2]<='6'){
+          if(payload[3]=='1'||payload[3]=='0')janelas[payload[2]-49]=payload[3];
+        }
+        draw_lamp();    
+      }
+      if(payload[1]=='i'){
+        if(payload[2]=='1') intruder=true;
+        if(payload[2]=='0') intruder=false;    
+      }      
+    }
+  }
   
 }
 void draw_msg(){  
@@ -165,77 +199,183 @@ void draw_msg(){
     vga.println(lines[j]);
   }  
 }
-void draw_lamp(){   
-  lamp(50, 100, lamps[0], 1);
-  lamp(110, 100, lamps[1], 2);
-  lamp(170, 100, lamps[2], 3);
-  lamp(50, 150, lamps[3], 4);
-  lamp(110, 150, lamps[4], 5);
-  lamp(170, 150, lamps[5], 6);
-  janela(240, 40, false);
+void draw_lamp(){  
+  msgstring[0]='j';
+  msgstring[1]=janelas[0];
+  msgstring[2]=janelas[1];
+  msgstring[3]=32;
+  msgstring[4]=32;
+  msgstring[5]=32;
+  msgstring[6]=32;
+  msgstring[7]=32;
+  client.publish("Benjamim/msg", msgstring); 
+  Serial.println(msgstring);
+  delay(20);
+  msgstring[0]='l';
+  msgstring[1]=lamps[0];
+  msgstring[2]=lamps[1];
+  msgstring[3]=lamps[2];  
+  msgstring[4]=lamps[3];  
+  msgstring[5]=lamps[4];  
+  msgstring[6]=lamps[5];
+  msgstring[7]=32;
+  client.publish("Benjamim/msg", msgstring); 
+  Serial.println(msgstring);  
   
+  lamp(50, 100, lamps[0]-'0', 1);
+  lamp(110, 100, lamps[1]-'0', 2);
+  lamp(170, 100, lamps[2]-'0', 3);
+  lamp(50, 150, lamps[3]-'0', 4);
+  lamp(110, 150, lamps[4]-'0', 5);
+  lamp(170, 150, lamps[5]-'0', 6);
+  janela(255, 40, janelas[0], 1);
+  janela(255, 100, janelas[1], 2);  
 }
 void draw_dados(){ 
-  vga.fillRect(28,198,200,50,6);
-  vga.setCursor(30,200);
+  vga.fillRect(28,190,140,40,0);
+  vga.setCursor(30,192);
   vga.print("umidade: ");
   vga.println(umistring);
   vga.print("temperatura: ");
   vga.println(tempstring);
   vga.print("Nivel de gas: ");
-  vga.println(gasValue);
+  vga.println(gasValue);  
 }
 void copypal(int start, int fim, int pos){
     for(int j=start, k=0;j<=fim;j++, k++){
       palavras[pos][k]=texto[j];
     }
 }
-void analise_pal(){
-   Serial.println("analise"); 
-   for(int j=0;j<8; j++){
-    if(palavras[j][0]=='l'&&palavras[j][1]=='a'){    
-      if(palavras[j][2]=='m'&&palavras[j][3]=='p'){
-        anaRes[L]=1;
+void analise_pal(){  
+    for(j=0;j<8; j++){   
+      //para as lâmpadas 
+      if(palavras[j][0]=='l'&&palavras[j][1]=='a'){    
+        if(palavras[j][2]=='m'&&palavras[j][3]=='p'){
+          anaRes[L]=1;        
+        }  
       }  
-    }  
-    if(palavras[j][0]>='1'&&palavras[j][0]<='9'){      
-      if(anaRes[L]==1){
-        anaRes[NL]=palavras[j][0]-48;
-      }  
-    }
-    if(palavras[j][0]=='l'&&palavras[j][1]=='i'){
-      if(palavras[j][2]=='g'&&palavras[j][3]=='a'){
-        anaRes[VL]=3;
-        if(anaRes[NL]>0)lamps[anaRes[NL]-1]=anaRes[VL];         
-        draw_lamp();
-        anaRes[L]=0;
-        anaRes[NL]=0;
-        anaRes[VL]=0;
-        for(int j=0;j<8;j++){
-          for(int k=0;k<sizeof(palavras[j]); k++){
-            palavras[j][k]=32;
+      if(palavras[j][0]>='1'&&palavras[j][0]<='9'){      
+        if(anaRes[L]==1){
+          anaRes[NL]=palavras[j][0]-48;
+        }  
+      }   
+      if(palavras[j][0]=='l'&&palavras[j][1]=='i'){
+        if(palavras[j][2]=='g'&&palavras[j][3]=='a'){
+          if(anaRes[L]==1){
+            anaRes[VL]=3;
+            if(anaRes[NL]>0)lamps[anaRes[NL]-1]=anaRes[VL]+'0';         
+            draw_lamp();
+            anaRes[L]=0;
+            anaRes[NL]=0;
+            anaRes[VL]=0;
+            for(h=0;h<8;h++){
+             for(k=0;k<sizeof(palavras[j]); k++){
+                palavras[h][k]=32;
+             }
+            }
           }
-        }
+        }  
       }  
-    }  
-    if(palavras[j][0]=='d'&&palavras[j][1]=='e'){
-      if(palavras[j][2]=='s'&&palavras[j][3]=='l'){
-        anaRes[VL]=0;
-        if(anaRes[NL]>0)lamps[anaRes[NL]-1]=anaRes[VL];          
-        draw_lamp();
-        anaRes[L]=0;
-        anaRes[NL]=0;
-        anaRes[VL]=0;
-        for(int j=0;j<8;j++){
-          for(int k=0;k<sizeof(palavras[j]); k++){
-            palavras[j][k]=32;
+      if(palavras[j][0]=='d'&&palavras[j][1]=='e'){
+        if(palavras[j][2]=='s'&&palavras[j][3]=='l'){
+          anaRes[VL]=0;
+          if(anaRes[NL]>0)lamps[anaRes[NL]-1]=anaRes[VL]+'0';          
+          draw_lamp();
+          anaRes[L]=0;
+          anaRes[NL]=0;
+          anaRes[VL]=0;
+          for(h=0;h<8;h++){
+           for(k=0;k<sizeof(palavras[j]); k++){
+              palavras[h][k]=32;
+            }
           }
-        }
+        }  
       }  
-    }        
-  }  
+
+
+      //para as janelas
+      if(palavras[j][0]=='j'&&palavras[j][1]=='a'){    
+        if(palavras[j][2]=='n'&&palavras[j][3]=='e'){
+          anaRes[J]=1;        
+        }  
+      }  
+      if(palavras[j][0]>='1'&&palavras[j][0]<='9'){      
+        if(anaRes[J]==1){
+          anaRes[NJ]=palavras[j][0]-48;
+        }  
+      }   
+      if(palavras[j][0]=='a'&&palavras[j][1]=='b'){
+        if(palavras[j][2]=='r'&&palavras[j][3]=='e'){
+          if(anaRes[J]==1){
+            anaRes[VJ]=1;
+            if(anaRes[NJ]>0)janelas[anaRes[NJ]-1]=anaRes[VJ]+'0';         
+            draw_lamp();
+            anaRes[J]=0;
+            anaRes[NJ]=0;
+            anaRes[VJ]=0;
+            for(h=0;h<8;h++){
+             for(k=0;k<sizeof(palavras[j]); k++){
+                palavras[h][k]=32;
+             }
+            }
+          }
+        }  
+      }  
+      if(palavras[j][0]=='f'&&palavras[j][1]=='e'){
+        if(palavras[j][2]=='c'&&palavras[j][3]=='h'){
+          if(anaRes[J]==1){
+            anaRes[VJ]=0;
+            if(anaRes[NJ]>0)janelas[anaRes[NJ]-1]=anaRes[VJ]+'0';          
+            draw_lamp();
+            anaRes[J]=0;
+            anaRes[NJ]=0;
+            anaRes[VJ]=0;
+            for(h=0;h<8;h++){
+              for(k=0;k<sizeof(palavras[j]); k++){
+                palavras[h][k]=32;
+              }
+            }
+          }  
+        } 
+      }
+
+      //para a segurança                    
+      if(palavras[j][0]=='s'&&palavras[j][1]=='e'){    
+        if(palavras[j][2]=='n'&&palavras[j][3]=='h'){
+          anaRes[S]=1; 
+          if(anaRes[TS]==0&&lock!=true)lock=true;
+          if(anaRes[TS]>0)anaRes[TS]--;                   
+        }  
+      }         
+      else if(palavras[j][0]==senha[0]&&palavras[j][1]==senha[1]){
+        if(palavras[j][2]==senha[2]&&palavras[j][3]==senha[3]){
+          if(palavras[j][4]==senha[4]&&palavras[j][5]==senha[5]){
+            if(anaRes[S]==1&&lock!=true){            
+              intruder=false;    
+              anaRes[S]=0;
+              anaRes[TS]=5;
+              anaRes[VS]=0;
+              for(h=0;h<8;h++){
+                for(k=0;k<sizeof(palavras[j]); k++){
+                  palavras[h][k]=32;
+                }
+              }              
+            }  
+          }  
+        }
+      }     
+      
+    } 
+    anaRes[VS]=0;  
+  
+   
 }
 void loop() {
+  
+  mpu6050.update();
+  accel=mpu6050.getAccZ();  
+  vga.setCursor(30,218);
+  if(accel>1.8) vga.println("Alguem caiu!!");
   if (!tasksEnabled) {
     // Wait 2 seconds to let system settle down
     delay(2000);
@@ -245,9 +385,10 @@ void loop() {
       vTaskResume(tempTaskHandle);
     }
   }
-
+ 
   if (!client.connected()) {
     reconnect();
+    client.publish("Benjamim/msg", "sync");
   }
   client.loop();
 
@@ -257,46 +398,55 @@ void loop() {
     bool down;
     auto vk = keyboard->getNextVirtualKey(&down);    
     int c = keyboard->virtualKeyToASCII(vk);
-    if(vk==122&&down==false){
-      Serial.println(vk);
-    }
     if (c > -1&&down==false) {  
       
-      if(c==13){        
-        
+      texto[i]=c;      
+      if(l>=MAXLINES)l=1;                  
+      strlcpy(lines[l], texto, sizeof(texto));  
+      
+      if(c==13){ 
+        copypal(lastpos,i, palpos);        
+        analise_pal();         
         i=0, l++;
-        for(int j=0;j<sizeof(texto)-1;j++){
+        for( j=0;j<sizeof(texto)-1;j++){
           texto[j]=32; 
         }  
-      }    
-      if(i==24){
-        i=0, l++;
-        for(int j=0;j<sizeof(texto)-1;j++){
-          texto[j]=32; 
-        }         
-      }
-      if(l>=MAXLINES)l=1;
-      texto[i]=c;         
+        texto[i]=c;
+        c=32;
+      }  
       if(c==32){
-        copypal(lastpos,i, palpos);        
-        Serial.println(palavras[palpos]);     
-        analise_pal(); 
+        copypal(lastpos,i, palpos);
+        analise_pal();                        
         lastpos=i+1;
         palpos++;
         if(palpos=8) palpos=0;
-        for(int k=0;k<sizeof(palavras[palpos]); k++){
+        for( k=0;k<sizeof(palavras[palpos]); k++){
           palavras[palpos][k]=32;
         }
-      }             
-      strlcpy(lines[l], texto, sizeof(texto));    
+      }       
+      
       if(c!=13) i++;          
       draw_msg();
+      c=0;
     }      
   }
-  gasValue=analogRead(gasPin); 
-  char msg[8];
-  dtostrf(gasValue, 1, 2, msg);
-  client.publish("Benjamim/gas", msg);
-  client.publish("Benjamim/msg", texto);   
+  m=millis();
+  if(m-lastm>500){
+    intruder_loop(intruder, anaRes[TS]);
+    gasMed[0]=gasMed[1];
+    gasMed[1]=gasMed[2];
+    gasMed[2]=gasMed[3];
+    gasMed[3]=analogRead(gasPin);  
+    gasValue=(gasMed[0]+gasMed[1]+gasMed[2]+gasMed[3])/4;
+    dtostrf(gasValue, 1, 2, msgstring);
+    client.publish("Benjamim/gas", msgstring);   
+    if(gasValue>2050){
+      janelas[0]='1';
+      janelas[1]='1';
+      draw_lamp();
+    }
+    lastm=m;
+  }
   yield();
+  
 }

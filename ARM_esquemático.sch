@@ -3294,6 +3294,257 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="optocoupler">
+<description>&lt;b&gt;Opto Couplers&lt;/b&gt;&lt;p&gt;
+Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="DIP4">
+<description>&lt;b&gt;DIP 4&lt;/b&gt; 300 mil&lt;p&gt;
+Source: http://www.vishay.com/docs/83673/sfh618.pdf</description>
+<wire x1="2.315" y1="3.18" x2="2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-1.085" x2="-2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="3.18" x2="2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="2.315" y1="-3.18" x2="-2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21" curve="180"/>
+<wire x1="-2.315" y1="-3.18" x2="-2.315" y2="-2.13" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21"/>
+<pad name="1" x="-1.27" y="-3.81" drill="0.8"/>
+<pad name="2" x="1.27" y="-3.81" drill="0.8"/>
+<pad name="3" x="1.27" y="3.81" drill="0.8"/>
+<pad name="4" x="-1.27" y="3.81" drill="0.8"/>
+<text x="-2.54" y="-3.175" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="3.81" y="-3.175" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<rectangle x1="-1.651" y1="-3.925" x2="-0.889" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="-3.925" x2="1.651" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="3.2" x2="1.651" y2="3.925" layer="51" rot="R180"/>
+<rectangle x1="-1.651" y1="3.2" x2="-0.889" y2="3.925" layer="51" rot="R180"/>
+</package>
+<package name="SMD4-7">
+<description>&lt;b&gt;SMD 4&lt;/b&gt; Option 7&lt;p&gt;
+Source:&lt;a href=" http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet &lt;/a&gt;</description>
+<wire x1="2.315" y1="3.18" x2="2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-1.085" x2="-2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="3.18" x2="2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="2.315" y1="-3.18" x2="-2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21" curve="180"/>
+<wire x1="-2.315" y1="-3.18" x2="-2.315" y2="-2.13" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21"/>
+<smd name="1" x="-1.27" y="-4.77" dx="1.78" dy="1.55" layer="1"/>
+<smd name="2" x="1.27" y="-4.77" dx="1.78" dy="1.55" layer="1"/>
+<smd name="3" x="1.27" y="4.77" dx="1.78" dy="1.55" layer="1" rot="R180"/>
+<smd name="4" x="-1.27" y="4.77" dx="1.78" dy="1.55" layer="1" rot="R180"/>
+<text x="-2.54" y="-3.175" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="3.81" y="-3.175" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<rectangle x1="-1.651" y1="-5.15" x2="-0.889" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="-5.15" x2="1.651" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="3.2" x2="1.651" y2="5.15" layer="51" rot="R180"/>
+<rectangle x1="-1.651" y1="3.2" x2="-0.889" y2="5.15" layer="51" rot="R180"/>
+</package>
+<package name="DIP4-400">
+<description>&lt;b&gt;DIP 4&lt;/b&gt; 400 mil&lt;p&gt;
+Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Dat asheet &lt;/a&gt;</description>
+<wire x1="2.315" y1="3.18" x2="2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-1.085" x2="-2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="3.18" x2="2.315" y2="3.18" width="0.1524" layer="21"/>
+<wire x1="2.315" y1="-3.18" x2="-2.315" y2="-3.18" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21" curve="180"/>
+<wire x1="-2.315" y1="-3.18" x2="-2.315" y2="-2.13" width="0.1524" layer="21"/>
+<wire x1="-2.315" y1="-2.13" x2="-2.315" y2="-1.085" width="0.1524" layer="21"/>
+<pad name="1" x="-1.27" y="-5.08" drill="0.8"/>
+<pad name="2" x="1.27" y="-5.08" drill="0.8"/>
+<pad name="3" x="1.27" y="5.08" drill="0.8"/>
+<pad name="4" x="-1.27" y="5.08" drill="0.8"/>
+<text x="-2.54" y="-3.175" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="3.81" y="-3.175" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<rectangle x1="-1.651" y1="-4.445" x2="-0.889" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="-4.445" x2="1.651" y2="-3.2" layer="51"/>
+<rectangle x1="0.889" y1="3.2" x2="1.651" y2="4.445" layer="51" rot="R180"/>
+<rectangle x1="-1.651" y1="3.2" x2="-0.889" y2="4.445" layer="51" rot="R180"/>
+</package>
+</packages>
+<symbols>
+<symbol name="OK">
+<wire x1="-2.413" y1="-1.143" x2="-1.016" y2="0.254" width="0.1524" layer="94"/>
+<wire x1="-1.016" y1="0.254" x2="-1.905" y2="-0.127" width="0.1524" layer="94"/>
+<wire x1="-1.905" y1="-0.127" x2="-1.397" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="-1.397" y1="-0.635" x2="-1.016" y2="0.254" width="0.1524" layer="94"/>
+<wire x1="-1.143" y1="1.397" x2="-2.032" y2="1.016" width="0.1524" layer="94"/>
+<wire x1="-2.032" y1="1.016" x2="-1.524" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="-1.524" y1="0.508" x2="-1.143" y2="1.397" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="0" x2="-1.143" y2="1.397" width="0.1524" layer="94"/>
+<wire x1="-3.175" y1="1.27" x2="-4.445" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="-1.27" x2="-5.715" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="-1.27" x2="-4.445" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="-1.27" x2="-5.715" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="1.27" x2="-4.445" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.27" x2="-4.445" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.27" x2="-5.715" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-6.985" y1="5.08" x2="4.445" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-6.985" y1="-5.08" x2="4.445" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-4.445" y1="2.54" x2="-4.445" y2="1.27" width="0.1524" layer="94"/>
+<wire x1="-6.985" y1="5.08" x2="-6.985" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-4.445" y1="-1.27" x2="-4.445" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="4.445" y1="5.08" x2="4.445" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-4.445" y1="2.54" x2="-7.62" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-4.445" y1="-2.54" x2="-7.62" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="2.286" y2="-2.286" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="5.08" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="5.08" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="-1.016" x2="2.286" y2="-2.286" width="0.1524" layer="94"/>
+<wire x1="2.286" y1="-2.286" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.286" y1="-2.286" x2="1.016" y2="-1.778" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="-1.778" x2="1.778" y2="-1.016" width="0.1524" layer="94"/>
+<text x="-6.985" y="5.715" size="1.778" layer="95">&gt;NAME</text>
+<text x="-6.985" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-0.381" y1="-2.54" x2="0.381" y2="2.54" layer="94"/>
+<pin name="A" x="-10.16" y="2.54" visible="pad" length="short" direction="pas"/>
+<pin name="C" x="-10.16" y="-2.54" visible="pad" length="short" direction="pas"/>
+<pin name="EMIT" x="7.62" y="-2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="COL" x="7.62" y="2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SFH618?*" prefix="OK">
+<description>&lt;b&gt;Optocoupler, Phototransistor Output, Low Input Current&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="http://www.vishay.com/docs/83673/sfh618.pdf"&gt; Data sheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="OK" x="0" y="0"/>
+</gates>
+<devices>
+<device name="A" package="DIP4">
+<connects>
+<connect gate="G$1" pin="A" pad="1"/>
+<connect gate="G$1" pin="C" pad="2"/>
+<connect gate="G$1" pin="COL" pad="4"/>
+<connect gate="G$1" pin="EMIT" pad="3"/>
+</connects>
+<technologies>
+<technology name="-2">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH618A-2" constant="no"/>
+<attribute name="OC_FARNELL" value="6424855" constant="no"/>
+<attribute name="OC_NEWARK" value="21H7744" constant="no"/>
+</technology>
+<technology name="-3">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH618A-3" constant="no"/>
+<attribute name="OC_FARNELL" value="1020374" constant="no"/>
+<attribute name="OC_NEWARK" value="58K2209" constant="no"/>
+</technology>
+<technology name="-4">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH618A-4" constant="no"/>
+<attribute name="OC_FARNELL" value="5805673" constant="no"/>
+<attribute name="OC_NEWARK" value="21H7746" constant="no"/>
+</technology>
+<technology name="-5">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH618A-5" constant="no"/>
+<attribute name="OC_FARNELL" value="1469593" constant="no"/>
+<attribute name="OC_NEWARK" value="59K0259" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="A-3X007" package="SMD4-7">
+<connects>
+<connect gate="G$1" pin="A" pad="1"/>
+<connect gate="G$1" pin="C" pad="2"/>
+<connect gate="G$1" pin="COL" pad="4"/>
+<connect gate="G$1" pin="EMIT" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="unknown" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="A-" package="DIP4-400">
+<connects>
+<connect gate="G$1" pin="A" pad="1"/>
+<connect gate="G$1" pin="C" pad="2"/>
+<connect gate="G$1" pin="COL" pad="4"/>
+<connect gate="G$1" pin="EMIT" pad="3"/>
+</connects>
+<technologies>
+<technology name="3X006">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="SFH618A-3X006" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="43K9541" constant="no"/>
+</technology>
+<technology name="4X006">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="unknown" constant="no"/>
+</technology>
+<technology name="5X006">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="unknown" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="A-5X007" package="SMD4-7">
+<connects>
+<connect gate="G$1" pin="A" pad="1"/>
+<connect gate="G$1" pin="C" pad="2"/>
+<connect gate="G$1" pin="COL" pad="4"/>
+<connect gate="G$1" pin="EMIT" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="SFH618A-5X007" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="43K9546" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="6" package="SMD4-7">
+<connects>
+<connect gate="G$1" pin="A" pad="1"/>
+<connect gate="G$1" pin="C" pad="2"/>
+<connect gate="G$1" pin="COL" pad="4"/>
+<connect gate="G$1" pin="EMIT" pad="3"/>
+</connects>
+<technologies>
+<technology name="-2">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH6186-2" constant="no"/>
+<attribute name="OC_FARNELL" value="1469583" constant="no"/>
+<attribute name="OC_NEWARK" value="58K2210" constant="no"/>
+</technology>
+<technology name="-3">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH6186-3" constant="no"/>
+<attribute name="OC_FARNELL" value="1469529" constant="no"/>
+<attribute name="OC_NEWARK" value="21H7751" constant="no"/>
+</technology>
+<technology name="-4">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH6186-4" constant="no"/>
+<attribute name="OC_FARNELL" value="1469530" constant="no"/>
+<attribute name="OC_NEWARK" value="21H7753" constant="no"/>
+</technology>
+<technology name="-5">
+<attribute name="MF" value="VISHAY/TELEFUNKEN" constant="no"/>
+<attribute name="MPN" value="SFH6186-5" constant="no"/>
+<attribute name="OC_FARNELL" value="1469584" constant="no"/>
+<attribute name="OC_NEWARK" value="58K2211" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3336,7 +3587,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="S9" library="adafruit" deviceset="31-XX" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
 <part name="M2" library="SparkFun-Electromechanical" deviceset="SERVO" device=""/>
-<part name="M3" library="SparkFun-Electromechanical" deviceset="SERVO" device=""/>
+<part name="M1" library="SparkFun-Electromechanical" deviceset="SERVO" device=""/>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
 <part name="P+6" library="supply1" deviceset="VCC" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
@@ -3344,6 +3595,12 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="J1" library="con-amp" deviceset="MTA05-100" device=""/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
+<part name="OK1" library="optocoupler" deviceset="SFH618?*" device="A" technology="-2"/>
+<part name="R1" library="adafruit" deviceset="R-US_" device="0204/7" value="220"/>
+<part name="P+4" library="supply1" deviceset="VCC" device=""/>
+<part name="GND2" library="supply1" deviceset="GND" device=""/>
+<part name="R2" library="adafruit" deviceset="R-US_" device="0204/7" value="620"/>
+<part name="GND3" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3382,7 +3639,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <instance part="S9" gate="1" x="20.32" y="-7.62"/>
 <instance part="P+3" gate="VCC" x="25.4" y="45.72"/>
 <instance part="M2" gate="G$1" x="-40.64" y="63.5"/>
-<instance part="M3" gate="G$1" x="-40.64" y="81.28"/>
+<instance part="M1" gate="G$1" x="-40.64" y="81.28"/>
 <instance part="P+5" gate="VCC" x="-33.02" y="58.42" rot="R180"/>
 <instance part="P+6" gate="VCC" x="-33.02" y="76.2" rot="R180"/>
 <instance part="GND8" gate="1" x="-38.1" y="55.88"/>
@@ -3390,6 +3647,12 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <instance part="J1" gate="G$1" x="-43.18" y="96.52" rot="R90"/>
 <instance part="P+1" gate="VCC" x="-27.94" y="93.98" rot="R270"/>
 <instance part="GND1" gate="1" x="-38.1" y="88.9"/>
+<instance part="OK1" gate="G$1" x="-48.26" y="38.1"/>
+<instance part="R1" gate="G$1" x="-63.5" y="40.64" rot="R180"/>
+<instance part="P+4" gate="VCC" x="-71.12" y="40.64" rot="R90"/>
+<instance part="GND2" gate="1" x="-58.42" y="33.02"/>
+<instance part="R2" gate="G$1" x="-40.64" y="30.48" rot="R270"/>
+<instance part="GND3" gate="1" x="-40.64" y="22.86"/>
 </instances>
 <busses>
 </busses>
@@ -3408,7 +3671,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="GND8" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="M3" gate="G$1" pin="GND"/>
+<pinref part="M1" gate="G$1" pin="GND"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -3419,6 +3682,14 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="J1" gate="G$1" pin="1"/>
 <wire x1="-40.64" y1="91.44" x2="-38.1" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="OK1" gate="G$1" pin="C"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="GND3" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -3472,7 +3743,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="-33.02" y1="60.96" x2="-38.1" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="M3" gate="G$1" pin="V+"/>
+<pinref part="M1" gate="G$1" pin="V+"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <wire x1="-33.02" y1="78.74" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
 </segment>
@@ -3480,6 +3751,15 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="J1" gate="G$1" pin="2"/>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
 <wire x1="-30.48" y1="93.98" x2="-40.64" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R1" gate="G$1" pin="2"/>
+<pinref part="P+4" gate="VCC" pin="VCC"/>
+<wire x1="-68.58" y1="40.64" x2="-68.58" y2="45.72" width="0.1524" layer="91"/>
+<junction x="-68.58" y="40.64"/>
+<pinref part="OK1" gate="G$1" pin="COL"/>
+<wire x1="-68.58" y1="45.72" x2="-40.64" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="45.72" x2="-40.64" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -3596,9 +3876,9 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <label x="20.32" y="25.4" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="G$1" pin="PA6"/>
-<wire x1="114.3" y1="109.22" x2="111.76" y2="109.22" width="0.1524" layer="91"/>
-<label x="111.76" y="109.22" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U$1" gate="G$1" pin="PA8"/>
+<wire x1="114.3" y1="96.52" x2="111.76" y2="96.52" width="0.1524" layer="91"/>
+<label x="111.76" y="96.52" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="B6" class="0">
@@ -3644,9 +3924,9 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <label x="-15.24" y="-15.24" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="G$1" pin="PA8"/>
-<wire x1="114.3" y1="96.52" x2="111.76" y2="96.52" width="0.1524" layer="91"/>
-<label x="111.76" y="96.52" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U$1" gate="G$1" pin="PB5"/>
+<wire x1="114.3" y1="88.9" x2="111.76" y2="88.9" width="0.1524" layer="91"/>
+<label x="111.76" y="88.9" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="B8" class="0">
@@ -3654,6 +3934,11 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="S8" gate="1" pin="P"/>
 <wire x1="2.54" y1="-12.7" x2="2.54" y2="-15.24" width="0.1524" layer="91"/>
 <label x="2.54" y="-15.24" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="PB4"/>
+<wire x1="114.3" y1="91.44" x2="111.76" y2="91.44" width="0.1524" layer="91"/>
+<label x="111.76" y="91.44" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="B9" class="0">
@@ -3750,34 +4035,6 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <label x="25.4" y="76.2" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="S2" class="0">
-<segment>
-<pinref part="M2" gate="G$1" pin="SIG"/>
-<wire x1="-38.1" y1="63.5" x2="-35.56" y2="63.5" width="0.1524" layer="91"/>
-<label x="-35.56" y="63.5" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="S3" class="0">
-<segment>
-<pinref part="M3" gate="G$1" pin="SIG"/>
-<wire x1="-38.1" y1="81.28" x2="-35.56" y2="81.28" width="0.1524" layer="91"/>
-<label x="-35.56" y="81.28" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PC9"/>
-<wire x1="114.3" y1="124.46" x2="111.76" y2="124.46" width="0.1524" layer="91"/>
-<label x="111.76" y="124.46" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$12" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PA5"/>
-<wire x1="114.3" y1="111.76" x2="111.76" y2="111.76" width="0.1524" layer="91"/>
-<label x="111.76" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="CLK" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="PB6"/>
@@ -3788,41 +4045,6 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="J1" gate="G$1" pin="5"/>
 <wire x1="-40.64" y1="101.6" x2="-38.1" y2="101.6" width="0.1524" layer="91"/>
 <label x="-38.1" y="101.6" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="N$20" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PB4"/>
-<wire x1="114.3" y1="91.44" x2="111.76" y2="91.44" width="0.1524" layer="91"/>
-<label x="111.76" y="91.44" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$21" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PB5"/>
-<wire x1="114.3" y1="88.9" x2="111.76" y2="88.9" width="0.1524" layer="91"/>
-<label x="111.76" y="88.9" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$22" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PB3"/>
-<wire x1="114.3" y1="86.36" x2="111.76" y2="86.36" width="0.1524" layer="91"/>
-<label x="111.76" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$24" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PA2"/>
-<wire x1="114.3" y1="81.28" x2="111.76" y2="81.28" width="0.1524" layer="91"/>
-<label x="111.76" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$25" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PA3"/>
-<wire x1="114.3" y1="78.74" x2="111.76" y2="78.74" width="0.1524" layer="91"/>
-<label x="111.76" y="78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ESW" class="0">
@@ -3847,6 +4069,50 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="J1" gate="G$1" pin="4"/>
 <wire x1="-40.64" y1="99.06" x2="-38.1" y2="99.06" width="0.1524" layer="91"/>
 <label x="-38.1" y="99.06" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="OK1" gate="G$1" pin="A"/>
+<pinref part="R1" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="ALARM" class="0">
+<segment>
+<pinref part="OK1" gate="G$1" pin="EMIT"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="-40.64" y1="35.56" x2="-35.56" y2="35.56" width="0.1524" layer="91"/>
+<junction x="-40.64" y="35.56"/>
+<label x="-35.56" y="35.56" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="PA6"/>
+<wire x1="114.3" y1="109.22" x2="111.76" y2="109.22" width="0.1524" layer="91"/>
+<label x="111.76" y="109.22" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="J1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PA15"/>
+<wire x1="-10.16" y1="101.6" x2="-12.7" y2="101.6" width="0.1524" layer="91"/>
+<label x="-12.7" y="101.6" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="M1" gate="G$1" pin="SIG"/>
+<wire x1="-38.1" y1="81.28" x2="-35.56" y2="81.28" width="0.1524" layer="91"/>
+<label x="-35.56" y="81.28" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="J2" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PB2"/>
+<wire x1="147.32" y1="99.06" x2="149.86" y2="99.06" width="0.1524" layer="91"/>
+<label x="149.86" y="99.06" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="M2" gate="G$1" pin="SIG"/>
+<wire x1="-38.1" y1="63.5" x2="-35.56" y2="63.5" width="0.1524" layer="91"/>
+<label x="-35.56" y="63.5" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

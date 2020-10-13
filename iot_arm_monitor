@@ -1,0 +1,39 @@
+[
+    {
+        "id": "a12a63d0.37a1a",
+        "type": "ui_text",
+        "z": "45c954c1.bfaf8c",
+        "group": "3492010f.fed7ce",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 430,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3492010f.fed7ce",
+        "type": "ui_group",
+        "z": "",
+        "name": "Nivel de gás no ar",
+        "tab": "91f40893.7d9b18",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "91f40893.7d9b18",
+        "type": "ui_tab",
+        "z": "",
+        "name": "mqtt ",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

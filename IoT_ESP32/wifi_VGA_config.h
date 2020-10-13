@@ -13,7 +13,7 @@ VGA3Bit vga;
   6-indigo
   7-branco
  */
- void lamp(uint16_t x, uint16_t y, uint8_t cor, uint8_t lamp){
+void lamp(uint16_t x, uint16_t y, uint8_t cor, uint8_t lamp){//função para o desenho das lâmpadas
   vga.line(x-3,y-18,x+3,y-18,cor);  
   vga.line(x-6,y-17,x+6,y-17,cor);
   vga.line(x-8,y-16,x+8,y-16,cor);
@@ -40,9 +40,9 @@ VGA3Bit vga;
   vga.print("lampada ");
   vga.print(lamp);
 }
-void janela(uint8_t x, uint8_t y, char state, uint8_t jan){
+void janela(uint8_t x, uint8_t y, char state, uint8_t jan){//função para o desenho das janelas
   vga.fillRect(x-51,y-26, 140, 67, 6);
-  if(state=='1'){
+  if(state=='1'){//janela aberta
     vga.fillRect(x-30, y-20, 61, 41, 0);
     vga.rect(x-31, y-21, 63, 43, 7);   
     vga.line(x-51,y-24, x-31, y-21, 7);
@@ -64,7 +64,7 @@ void janela(uint8_t x, uint8_t y, char state, uint8_t jan){
     vga.line(x+31,y+20, x+51, y+23, 7);    
     vga.line(x+31,y+21, x+51, y+24, 7);   
   }  
-  if(state=='0'){
+  if(state=='0'){//janela fechada
     vga.line(x, y-20, x, y+20, 0);
     vga.rect(x-31, y-21, 63, 43, 7);     
     vga.fillRect(x-30, y-20, 30, 41, 7);
@@ -79,7 +79,7 @@ void janela(uint8_t x, uint8_t y, char state, uint8_t jan){
 bool on=true, pass=false;
 void intruder_loop(bool intr, int tentativas){
   int x=215,y=150;
-    if(intr==true){
+    if(intr==true){//caso haja um intruso na casa
       vga.fillRect(x-12,y,110,90,6); 
       vga.line(x+38,y+7,x+48,y+7,1);
       vga.line(x+36,y+8,x+50,y+8,1);
@@ -97,7 +97,7 @@ void intruder_loop(bool intr, int tentativas){
       vga.line(x+30,y+36,x+56,y+36,7);
       vga.line(x+34,y+37,x+52,y+37,7);   
       vga.line(x+40,y+38,x+46,y+38,7); 
-      if(on==true&&pass==false){
+      if(on==true&&pass==false){//para piscar a luz de alarme
         for(uint8_t yp=10, len=0;yp<20;yp++, len++){
           vga.line(x+6,y+yp,x+6+len*2,y+yp,1);
         }
@@ -122,7 +122,7 @@ void intruder_loop(bool intr, int tentativas){
         on=false;
         pass=true;
       }
-      if(on==false&&pass==false)on=true,pass=true;
+      if(on==false&&pass==false)on=true,pass=true;//para piscar a luz de alarme
       pass=false;
       vga.fillRect(x-12,y+40,110,24,0);
       vga.setCursor(x-10,y+40);
@@ -137,9 +137,9 @@ void intruder_loop(bool intr, int tentativas){
   
 }
 
-#include <WiFi.h>
-#include <WiFiClientSecure.h>
-#include <WiFiManager.h>
+#include <WiFi.h>//biblioteca para a conexão wifi
+#include <WiFiClientSecure.h>//biblioteca para a proteção da conexão wifi
+#include <WiFiManager.h>//biblioteca para facilitar a troca do wifi ao qual o ESP32 deve ser conectado
 #include <PubSubClient.h>//biblioteca para o MQTT
 WiFiServer server(80);
 

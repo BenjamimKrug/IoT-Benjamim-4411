@@ -1,0 +1,332 @@
+[
+    {
+        "id": "a3aa0c64.4c86c",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "320e79a.b37a186",
+        "type": "serial in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "serial": "bbf89346.d60ce",
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "86b15ed6.4be81"
+            ]
+        ]
+    },
+    {
+        "id": "8f26cfae.f659c",
+        "type": "serial out",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "serial": "bbf89346.d60ce",
+        "x": 500,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "58f8aebf.c0287",
+        "type": "ui_gauge",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "group": "94e51b9a.453eb8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "nivel de gas",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 510,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4f575dd2.b33124",
+        "type": "ui_gauge",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "group": "c24dcb5b.3d5458",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "70",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "eb6becad.36f55",
+        "type": "ui_gauge",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "group": "94e51b9a.453eb8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "umidade do ambiente",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "da88da19.451378",
+        "type": "ui_text",
+        "z": "a3aa0c64.4c86c",
+        "group": "94e51b9a.453eb8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 490,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ed9d9f84.500ba",
+        "type": "ui_text",
+        "z": "a3aa0c64.4c86c",
+        "group": "94e51b9a.453eb8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3d9a5827.0df748",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "4f575dd2.b33124"
+            ]
+        ]
+    },
+    {
+        "id": "fb1d6880.6fb178",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/gas",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "58f8aebf.c0287"
+            ]
+        ]
+    },
+    {
+        "id": "18dd27bd.9c0b98",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/umi",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "eb6becad.36f55"
+            ]
+        ]
+    },
+    {
+        "id": "23183f82.8cea7",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/queda",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "da88da19.451378"
+            ]
+        ]
+    },
+    {
+        "id": "5e2142cc.6a6cec",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/fumaca",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "ed9d9f84.500ba"
+            ]
+        ]
+    },
+    {
+        "id": "8a16e379.788ec",
+        "type": "mqtt in",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/msg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d2760ec9.2f3b6",
+        "x": 220,
+        "y": 380,
+        "wires": [
+            [
+                "8f26cfae.f659c"
+            ]
+        ]
+    },
+    {
+        "id": "86b15ed6.4be81",
+        "type": "mqtt out",
+        "z": "a3aa0c64.4c86c",
+        "name": "",
+        "topic": "Benjamim/pEsp",
+        "qos": "",
+        "retain": "",
+        "broker": "d2760ec9.2f3b6",
+        "x": 520,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bbf89346.d60ce",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "COM16",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "94e51b9a.453eb8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Nivel de gás no ar",
+        "tab": "557f5e92.64818",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "c24dcb5b.3d5458",
+        "type": "ui_group",
+        "z": "",
+        "name": "temperatura do ambiente",
+        "tab": "557f5e92.64818",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d2760ec9.2f3b6",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "557f5e92.64818",
+        "type": "ui_tab",
+        "z": "",
+        "name": "IoT",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

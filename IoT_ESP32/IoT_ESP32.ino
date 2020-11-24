@@ -24,7 +24,7 @@ Ticker tempTicker;
 //Para leitura dos dados do DHT11
 DHTesp dht;
 TempAndHumidity newValues;
-MPU6050 mpu6050(Wire);//configura o giroscopio/acelerômetro
+//MPU6050 mpu6050(Wire);//configura o giroscopio/acelerômetro
 
 const char* mqtt_server = "broker.hivemq.com";//broker MQTT
 
@@ -147,9 +147,9 @@ void setup(){
   client.setCallback(callback);       //configura a interrupção para a recepção de dados via MQTT
 
   PS2Controller.begin(PS2Preset::KeyboardPort0);//configura a comunicação com o teclado PS/2
-  Wire.begin(26,25);                            //inicia SDA SCL do I2C para o ESP32
-  mpu6050.begin();                              //inicia o interfaceamento com o MPU6050
-  mpu6050.calcGyroOffsets(true);                //calcula o offset inicial do giroscópio do MPU6050
+  //Wire.begin(26,25);                            //inicia SDA SCL do I2C para o ESP32
+ // mpu6050.begin();                              //inicia o interfaceamento com o MPU6050
+  //mpu6050.calcGyroOffsets(true);                //calcula o offset inicial do giroscópio do MPU6050
   
   vga.init(vga.MODE320x240, redPin, greenPin, bluePin, hsyncPin, vsyncPin);//inicializa a imagem no monitor VGA
   //selecting the font
@@ -382,13 +382,13 @@ void analise_pal(){
 }
 void loop() {
   
-  mpu6050.update();//atualiza os dados do MPU6050
-  accel=mpu6050.getAccZ();  
+  //mpu6050.update();//atualiza os dados do MPU6050
+  //accel=mpu6050.getAccZ();  
   vga.setCursor(30,218);
-  if(accel>1.8) {
-    vga.println("Alguem caiu!!!");//caso a aceleração medida pelo MPU6050 seja maior que 1,8Gs quer dizer que alguém provavelmente caiu
-    client.publish("Benjamim/queda","Alguém Caiu!!!");
-  }
+//  if(accel>1.8) {
+//    vga.println("Alguem caiu!!!");//caso a aceleração medida pelo MPU6050 seja maior que 1,8Gs quer dizer que alguém provavelmente caiu
+//    client.publish("Benjamim/queda","Alguém Caiu!!!");
+//  }
   
   if (!tasksEnabled) {    
     delay(2000);// espera 2 segundos para deixar o sistema se establecer
@@ -449,7 +449,7 @@ void loop() {
     gasValue=(gasMed[0]+gasMed[1]+gasMed[2]+gasMed[3])/4; //cálcula a média do valor de gás
     dtostrf(gasValue, 1, 2, msgstring);                   //converte um valor float para uma string
     client.publish("Benjamim/gas", msgstring);            //publica o valor de gás para ser mostrado no dashboard do NodeRed    
-    if(gasValue>2050){//se o valor de gás for alto demais provavelmente tem um vazamento de gás ou algum incêndio gerando fumaça
+    if(gasValue>2250){//se o valor de gás for alto demais provavelmente tem um vazamento de gás ou algum incêndio gerando fumaça
       vga.setCursor(30,226);
       vga.println("Fumaca detectada");
       client.publish("Benjamim/fumaca","Fumaça detectada");
